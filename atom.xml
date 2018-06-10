@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://buttonguaika.github.io/"/>
-  <updated>2018-06-10T14:40:08.169Z</updated>
+  <updated>2018-06-10T14:43:15.166Z</updated>
   <id>https://buttonguaika.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://buttonguaika.github.io/2018/06/10/HelloWorld/"/>
     <id>https://buttonguaika.github.io/2018/06/10/HelloWorld/</id>
     <published>2018-06-10T14:06:04.000Z</published>
-    <updated>2018-06-10T14:40:08.169Z</updated>
+    <updated>2018-06-10T14:43:15.166Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>折腾了两天，总算是把博客重新部署回来了，博客的订阅源算是可以用了，欢迎视奸 :) 。</p></blockquote><p>由于最近在研究一个2D游戏框架——<a href="http://haxeflixel.com/" target="_blank" rel="noopener">HaxeFlixel</a>，为了自己回顾每天的学习进程，打算在学习过程里把一些东西整理一下放到博客上来，日后也可以分享给其他感兴趣的人学习。目前在跟HaxeFlixel官网的教程走一遍，目前还没有看到与这个框架有关的中文资料，接下来一段时间我跟到哪就顺便翻译到博客上来。</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>折腾了两天，总算是把博客重新部署回来了，博客的订阅源算是可以用了，欢迎视奸 :) 。</p></blockquote><p>由于最近在研究一个2D游戏框架——<a href="http://haxeflixel.com/" target="_blank" rel="noopener">HaxeFlixel</a>，为了自己回顾每天的学习进程，打算在学习过程里把一些东西整理一下放到博客上来，日后也可以分享给其他感兴趣的人学习。目前在跟HaxeFlixel官网的教程走一遍，由于还没有看到与这个框架有关的中文资料，接下来一段时间我跟到哪就顺便翻译到博客上来。</p>]]></content>
     
     <summary type="html">
     
