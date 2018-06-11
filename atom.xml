@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://buttonguaika.github.io/"/>
-  <updated>2018-06-11T15:29:53.512Z</updated>
+  <updated>2018-06-11T15:39:42.670Z</updated>
   <id>https://buttonguaika.github.io/</id>
   
   <author>
@@ -17,13 +17,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>HaxeFilxel官方教程1</title>
-    <link href="https://buttonguaika.github.io/2018/06/11/HaxeFilxel%E5%AE%98%E6%96%B9%E6%95%99%E7%A8%8B1/"/>
-    <id>https://buttonguaika.github.io/2018/06/11/HaxeFilxel官方教程1/</id>
-    <published>2018-06-11T15:29:12.000Z</published>
-    <updated>2018-06-11T15:29:53.512Z</updated>
+    <title>HaxeFlixel官方教程:开篇</title>
+    <link href="https://buttonguaika.github.io/2018/06/11/HaxeFlixel%E5%AE%98%E6%96%B9%E6%95%99%E7%A8%8B-%E5%BC%80%E7%AF%87/"/>
+    <id>https://buttonguaika.github.io/2018/06/11/HaxeFlixel官方教程-开篇/</id>
+    <published>2018-06-11T15:39:01.000Z</published>
+    <updated>2018-06-11T15:39:42.670Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="http://haxeflixel.com/documentation/tutorial/" target="_blank" rel="noopener">原文</a></p><p>欢迎来到 HaxeFlixel ！在这系列教程中，你将学习如何使用 HaxeFlixel 从头到尾创建一个完整的游戏，每一步骤都会被打碎成小片段以帮助你度过难关。</p><p>这一系列教程可以面向 Flash，Windows，Aandroid 进行构建。但我们多数时候是编译到 Flash 平台。</p><p>我们将要搭建一个 <strong>dungen crawler</strong> 小游戏。</p><p>首先，让我聊一点关于为何你应该选择 HaxeFlixel 。</p><p>HaxeFlixel 的由来要追溯到由 Adam ‘Atomic’ Saltsman 创造的 AS3 Flixel 框架。如果你有玩过 Canabalt，那么你就见过过了这个框架的早期版本。HaxeFlixel 继承了 Flixel 的一般结构，从 Flash 平台分离出来并整合进强大的开源多平台语言 Haxe 中，所以你编写的游戏就可以简单的发布到各个平台上（Windows，Flash，iOS，Android等）。</p><p>当你使用 HaxeFlixel 编写代码时尽管有些变化但与编写 AS3 代码没有太多差别。此外它拥有大量的内置特性 - 类，实用程序，以及函数 - 当你碰上一些常见或复杂的事情时它们可以帮你解决。并且因为 HaxeFlixel 是开源的，当你发现某些事情它做不到，那你可以修改它的源码，同时如果你的修改对其他人是有帮助的，可以把它们添加进 library。</p><p>它是一个简单易用的代码库（library），而且给予了你足够的自由去实现你能够想到的任何事情，却不会被死板的接口而限制住。</p><p>你可以从这里了解到更多有关于 HaxeFlixel ：<a href="http://haxeflixel.com/documentation/about/" target="_blank" rel="noopener">链接</a></p>]]></content>
+    <content type="html"><![CDATA[<p><a href="http://haxeflixel.com/documentation/tutorial/" target="_blank" rel="noopener">原文</a></p><p>欢迎来到 HaxeFlixel ！在这系列教程中，你将学习如何使用 HaxeFlixel 从头到尾创建一个完整的游戏，每一步骤都会被打碎成小片段以帮助你度过难关。</p><p>这一系列教程可以面向 Flash，Windows，Aandroid 进行构建。但我们多数时候是编译到 Flash 平台。</p><p>我们将要搭建一个 <strong>dungen crawler</strong> 小游戏。</p><p>首先，让我聊一点关于为何你应该选择 HaxeFlixel :</p><p>HaxeFlixel 的由来要追溯到由 <a href="http://www.adamatomic.com/" target="_blank" rel="noopener">Adam ‘Atomic’ Saltsman</a> 开发的 <a href="http://flixel.org/" target="_blank" rel="noopener">AS3 Flixel 框架</a>。如果你有玩过 <a href="http://www.adamatomic.com/canabalt/" target="_blank" rel="noopener">Canabalt</a>，那么你就见过过了这个框架的早期版本。HaxeFlixel 继承了 Flixel 的一般结构，从 Flash 平台分离出来并整合进强大的开源多平台语言 <a href="http://haxe.org/" target="_blank" rel="noopener">Haxe</a> 中，所以你编写的游戏就可以简单的发布到各个平台上（Windows，Flash，iOS，Android等）。</p><p>当你使用 HaxeFlixel 编写代码时尽管有些变化但与编写 AS3 代码没有太多差别。此外它拥有大量的内置特性 - 类，实用程序，以及函数 - 当你碰上一些常见或复杂的事情时它们可以帮你解决。并且因为 HaxeFlixel 是开源的，当你发现某些事情它做不到，那你可以修改它的源码，同时如果你的修改对其他人是有帮助的，可以把它们<a href="http://haxeflixel.com/documentation/contributing/" target="_blank" rel="noopener">添加进 library</a>。</p><p>它是一个简单易用的代码库（library），而且给予了你足够的自由去实现你能够想到的任何事情，却不会被死板的接口而限制住。</p><p>你可以从这里了解到更多有关于 HaxeFlixel ：<a href="http://haxeflixel.com/documentation/about/" target="_blank" rel="noopener">链接</a></p>]]></content>
     
     <summary type="html">
     
@@ -36,7 +36,7 @@
     </summary>
     
     
-      <category term="Haxe HaxeFlixel" scheme="https://buttonguaika.github.io/tags/Haxe-HaxeFlixel/"/>
+      <category term="Haxe,HaxeFlixel" scheme="https://buttonguaika.github.io/tags/Haxe-HaxeFlixel/"/>
     
   </entry>
   
