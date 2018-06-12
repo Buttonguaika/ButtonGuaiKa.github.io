@@ -11,8 +11,25 @@
 </li>
 <li><p>打开 VSCode 的资源管理器。</p>
 </li>
-<li><p>在资源管理器里，你能够看到项目的结构，包含了所有模板为我们生成的文件。</p>
-<p><img src="/2018/06/12/HaxeFlixel官方教程2-创建项目/资源管理器.jpg" alt=""></p>
+<li><p>在资源管理器里，你能够看到项目的结构，包含了模板为我们生成的所有文件。</p>
+<p><img src="/2018/06/12/HaxeFlixel官方教程2-创建项目/img1.jpg" alt=""></p>
+</li>
+<li><p>接下来我们要确定我们的项目能够正确的构建与运行。默认情况下，一个崭新的 Flixel 模板项目会从 PlayState 启动游戏。所以从资源管理器双击打开 source 文件夹下的 PlayState 文件。这是一个十分基础的 FlxState 子类的实例。你可以设想一下把 FlxState 看作是一个 “场景（scenes）” 。当你的游戏开始运行时有且只有一个 “状态（state）” 处于活动状态。玩家看得见摸得着的东西都是被“添加（added）”进该状态的，并且通常会把不共享资源的状态相互隔离。</p>
+<p>通常相互隔离的状态负责游戏的不同部分，比如游戏的开始菜单（MenuState）与游戏状态（PlayState），这些状态之间的关系有点像一个个泡泡（这个实在不知道如何翻译）</p>
+<blockquote>
+<p>They are great for having different sections of your game that are sort of in a bubble from one another, such as a <code>MenuState</code> (which we will add later) and the <code>PlayState</code> (where the game is actually played).</p>
+</blockquote>
+<p>稍后你将会看到，但目前为止 PlayState 只有包含了两个函数：<code>create()</code> 与 <code>update()</code>函数。当一个状态被加载进来，他的<code>create()</code>函数会立即被调用。你应该在这里对状态做一些初始化工作。</p>
+<p><code>update()</code> 是所有奇妙的事物发生的地方，他会在游戏运行时按每帧一次的频率调用（默认情况下游戏是 每秒60帧 - 60fps）。当一个 <code>FlxState</code> 对象的 <code>update()</code> 被调用时，它也会调用被添加进该状态的对象的 <code>update()</code> 函数。这基本上就是你的游戏背后的工作原理。稍后我们会更详细的讨论。现在，我们只是想看看我们搭建的东西是不是能够正常运行，所以接下来让我们添加一个简单的 <code>FlxText</code> 对象到这个状态里。</p>
+</li>
+<li><p>在文件的最上方，位于 <code>import flixel.FlxState;</code> 这一行下方添加以下代码：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> flixel.text.FlxText;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="7">
+<li><p>在 <code>create()</code> 函数里，位于 <code>super.create();</code> 的前一行的位置添加以下代码:</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="keyword">new</span> <span class="type">FlxText</span>(<span class="number">10</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="string">"Hello, World!"</span>));</span><br></pre></td></tr></table></figure>
+<p>然后保存你的修改（<code>Ctrl + s</code>）</p>
 </li>
 </ol>
 <p><strong>未完先po上来…</strong></p>
