@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>HaxeFlixel官方教程3:基础工作 | NullStack</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">HaxeFlixel官方教程3:基础工作</h1><a id="logo" href="/.">NullStack</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">HaxeFlixel官方教程3:基础工作</h1><div class="post-meta">Jun 14, 2018</div><div class="post-content"><p><a href="http://haxeflixel.com/documentation/groundwork/" target="_blank" rel="noopener">原文</a></p>
+<p>现在，是时候思考一下我们要做什么样的游戏，以及我们要如何去实现。</p>
+<p>我们将要做一个十分简单的 “上帝视角”的“地牢行者（dungeon crawler）”小游戏，玩家将控制一个角色在地图内自由行走，与敌人战斗并收集金币。</p>
+<p>所以，我们要如何将这些设计转换到 HaxeFlixel 中实现？</p>
+<ul>
+<li>首先，我们需要我们需要为我们的游戏建立一个“世界” - 也就是说我们需要一个<code>FlxState</code>对象作为一个容纳游戏内容的容器。</li>
+<li>接着是地牢的设计，我们将使用<code>FlxTilemap</code>对象来表示地牢，地牢的地图我们会使用另一个工具来绘制</li>
+<li>我们将使用一个<code>FlxSprite</code>对象来表示玩家的角色，他是一个被玩家控制的精灵序列（sprite）。</li>
+<li>敌人也是使用<code>FlxSprite</code>对象来表示，而且我们将会用一种特别的方式实现几种不同类型的敌人。</li>
+<li>我们当然还需要一套 HUD/界面接口 用于方便玩家知道自己做了哪些事情产生了哪些结果。我们将通过组合<code>FlxGroup</code>，<code>FlxSprite</code>，<code>FlxText</code>，<code>FlxButton</code>对象与其他一些东西来实现。</li>
+</ul>
+<p>我们将会把以上这些工作一个一个实现。</p>
+<p>首先，让我们先来创建一个简单的菜单，在最后我们会实现一个复杂的<code>MenuState</code>提供按钮以实现更多选项，但是目前我们只需要一个显式“Play”的按钮其功能将实现从菜单切换至<code>PlayState</code>。</p>
+<ol>
+<li><p>删除我们前面为<code>PlayState</code>添加的”Hello World”测试的代码。</p>
+<p>现在在<code>PlayState.hx</code>文件所在的同一个文件夹下创建一个新的文件命名为<code>MenuState.hx</code>（<strong>未填写</strong>）。然后你只需要把<code>PlayState.hx</code>中的代码拷贝进这个文件里（但是把类名改为<code>MenuState</code>）：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MenuState</span> <span class="keyword"><span class="keyword">extends</span> <span class="type">FlxState</span></span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br></pre></td></tr></table></figure>
+<p>在类声明之后，我们要定义一个新的变量，你在想要在这个类的任何位置中使用的变量都应该在这个地方定义，我们现在要定义一个<code>FlxButton</code>类型的变量，作为我们的“Play”按钮，所以在这个位置输入：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _btnPlay:<span class="type">FlxButton</span>;</span><br></pre></td></tr></table></figure>
+<p>注意：如果你使用的是 FlashDevelop ，那么现在IDE会因为你的<code>FlxButton</code>变量的定义而自动在类声明的上方加入一段 import 代码（<code>import flixel.ui.FlxButton;</code>），如果跟我一样是用 VSCode 的话那就自己手动码一下吧。</p>
+</li>
+<li><p>现在，在<code>create()</code>函数里位于<code>super.create()</code>的前一行敲入以下代码：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_btnPlay = <span class="keyword">new</span> <span class="type">FlxButton</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="string">"play"</span>,clickPlay);</span><br><span class="line">add(_btnPlay);</span><br></pre></td></tr></table></figure>
+<p>这将会创建一个<code>FlxButton</code>对象并赋值给<code>_btnPlay</code>变量，我们告诉他要在<code>(0,0)</code>坐标位置（在游戏画面的左上角）处创建一个按钮，并在其上显示 “Play” ，当玩家点击它时，调用<code>clickPlay()</code>函数（我们暂时还没有实现<code>clickPlay()</code>函数），然后将这个对象添加到舞台上以显示与交互。暂时不要担心按钮的位置，我们稍后将会调整。</p>
+</li>
+<li><p>接下来我们需要定义<code>clickPlay()</code>函数，在类体内那个地方都行，但不要位于其他函数体内的位置，敲入以下代码：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clickPlay</span></span>():<span class="type">Void</span></span><br><span class="line"><span class="type"></span>&#123;</span><br><span class="line">    FlxG.switchState(<span class="keyword">new</span> <span class="type">PlayState</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个函数里它调用了<code>FlxG.switchState()</code>，它的工作是从当前的状态（目前而言也就是<code>MenuState</code>）切换状态至一个新的<code>PlayState</code>实例。</p>
+</li>
+<li><p>从技术上讲，目前为止我们所要实现的功能已经能正常工作了，你可以运行游戏并且会按我们的预期工作，但是我们还差几件事情没有做。首先，我们的按钮需要放置在一个更合理的位置，我们当然可以在创建按钮对象的时候通过传递 x 和 y 坐标值的方式来定义它的位置，但是这里有一个更简单的方法，回到<code>create()</code>函数里，在我们创建<code>FlxButton</code>对象之后，<code>super.create()</code>之前的位置（我会放在按钮对象被到舞台上之前的位置，但是这行代码放在其之后结果也是一样的）添加一行新的代码：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_btnPlay.screenCenter();</span><br></pre></td></tr></table></figure>
+<p><code>screenCenter()</code>函数的功能是将对象的坐标放在水平或垂直抑或（默认的）这两个方向上的中心位置。调用我们的按钮对象上的这个函数，它将会被放置于游戏画面的中心位置。</p>
+</li>
+<li><p>然后我们需要确保游戏是从<code>MenuState</code>状态启动的。打开<code>Main.hx</code>文件，把对<code>PlayState</code>的引用替换成<code>MenuState</code>。</p>
+</li>
+<li><p>如果你开始启动调试，它会显示一个黑色画面，其中间是我们的 “Play” 按钮，点击它会跳转到另一个黑色画面。如果你的结果如上所述，那么就表示一切正常！GREAT！</p>
+</li>
+</ol>
+<p>之后我们还需要创建一个能够在画面里自由行走的简单的 player 精灵（player sprite)。</p>
+<p>首先，我们需要创建一个新的<code>Player</code>类，你可以把类理解为一个容纳了一系列函数的模板，你可以在项目中使用它们，而且还能够通过继承（extend）变为一个新的版本，你可以把继承理解成描摹纸（小时候描画的那种几乎透明的很薄的纸），当你要对一个类进行继承的时候，就类似于你铺了一张新的描摹纸在它上面 - 你依然可以看到上一张纸的内容并且能够描下来，而且你还能在其上添加更多新的东西。</p>
+<p>我们将要通过继承<code>FlxSprite</code>类来创建我们自己的<code>Player</code>类。</p>
+<ol>
+<li><p>在资源管理器里，右键点选 source 文件夹然后点击创建文件：</p>
+<p><img src="/2018/06/14/HaxeFlixel官方教程3-基础工作/img1.jpg" alt=""></p>
+<p>新文件命名为<code>Player.hx</code>然后双击打开。</p>
+</li>
+<li><p>由于 VSCode 环境下目前我还不知道有什么方法可以通过UI界面选择一个文件的父类再自动生成文件，所以下面需要手动敲码。</p>
+</li>
+<li><p>正确添加之后界面大概会像这样：</p>
+<p><img src="/2018/06/14/HaxeFlixel官方教程3-基础工作/img2.jpg" alt=""></p>
+</li>
+<li><p>然后在<code>Player.hx</code>文件里敲入以下代码：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> flixel.FlxSprite;</span><br><span class="line"><span class="keyword">import</span> flixel.system.FlxAssets.FlxGraphicAsset;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Player</span> <span class="keyword"><span class="keyword">extends</span> <span class="type">FlxSprite</span></span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">new</span></span>(?X:<span class="type">Float</span>=<span class="number">0</span>, ?Y:<span class="type">Float</span>=<span class="number">0</span>, ?SimpleGraphic:<span class="type">FlxGraphicAsset</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">super</span>(X,Y,SimpleGraphic);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个标准的<code>FlxSprite</code>子类的结构，我们为了使用需要稍微修改一下。</p>
+</li>
+<li><p>首先，去掉构造函数的<code>SimpleGraphic</code>参数，我们的<code>Player</code>精灵用不着这个参数。</p>
+<p>所以：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">new</span></span>(?X:<span class="type">Float</span>=<span class="number">0</span>, ?Y:<span class="type">Float</span>=<span class="number">0</span>, ?SimpleGraphic:<span class="type">FlxGraphicAsset</span>)</span><br></pre></td></tr></table></figure>
+<p>改写成：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">new</span></span>(?X:<span class="type">Float</span>=<span class="number">0</span>, ?Y:<span class="type">Float</span>=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>还有：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">super</span>(X,Y,SimpleGraphic);</span><br></pre></td></tr></table></figure>
+<p>改写成：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">super</span>(X,Y);</span><br></pre></td></tr></table></figure>
+<p>在类里面，我们使用 “super” 关键字来引用父类。所以在我们的 <code>new()</code>/构造函数 中，通过调用<code>super(X,Y)</code>我们是表示将它关联至父类，此例中也就是<code>FlxSprite</code>类，并调用父类构造函数，把传递给我们的 <code>X</code> 和 <code>y</code> 也传递给父类构造函数。</p>
+<p>这里有点细节：<a href="https://www.kancloud.cn/simon_chang/haxe3manual/184189" target="_blank" rel="noopener">Haxe中的继承</a></p>
+</li>
+<li><p>然后我们为了知道我们的精灵在哪我们为它创建一个 占位符图像（placeholder image），所以在<code>super(X,Y)</code>之后添加：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">makeGraphic(<span class="number">16</span>,<span class="number">16</span>,FlxColor.BLUE);</span><br></pre></td></tr></table></figure>
+<p>（注意添加<code>import</code>代码导入<code>FlxColor</code>类：<code>import flixel.util.FlxColor;</code>）</p>
+<p>我们这里所做的事情是把这个对象创建为一个 16x16 大小的蓝色放块。</p>
+</li>
+<li><p>现在我们要创建<code>Player</code>对象的实例确保这个对象能够正常工作，并把它添加到<code>PlayState</code>状态里。它暂时还不能移动或做其他任何事情，这个我们稍后会实现它，现在先保存<code>Player.hx</code>文件（<code>Ctrl+S</code>），然后回到<code>PlayState</code>文件里，我们要定义一个<code>Player</code>类的变量，在类体第一行位置添加以下代码：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _player:<span class="type">Player</span>;</span><br></pre></td></tr></table></figure>
+<p>然后在<code>creat()</code>函数里<code>super.create()；</code>之前：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_player = <span class="keyword">new</span> <span class="type">Player</span>(<span class="number">20</span>,<span class="number">20</span>);</span><br><span class="line">add(_player);</span><br></pre></td></tr></table></figure>
+<p>这里所做的事情很简单，为我们的<code>_player</code>变量赋值了一个<code>Player</code>类的实例，告诉他放在<code>(20,20)</code>坐标位置处，并把它添加进<code>PlayState</code>状态里。</p>
+</li>
+</ol>
+<p><strong>未完先po…</strong></p>
+</div><div class="tags"><a href="/tags/HaxeFlixel/">HaxeFlixel</a></div><div class="post-nav"><a class="next" href="/2018/06/12/HaxeFlixel官方教程2-创建项目/">HaxeFlixel官方教程2:创建项目</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://buttonguaika.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/HaxeFlixel/" style="font-size: 15px;">HaxeFlixel</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/HaxeFlixel官方教程3-基础工作/">HaxeFlixel官方教程3:基础工作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/HaxeFlixel官方教程2-创建项目/">HaxeFlixel官方教程2:创建项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/11/HaxeFlixel官方教程-开篇/">HaxeFlixel官方教程:开篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/HelloWorld/">HelloWorld!</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://haxeflixel.com/" title="HaxeFlixel" target="_blank">HaxeFlixel</a><ul></ul><a href="https://www.kancloud.cn/simon_chang/haxe3manual" title="Haxe3中文手册" target="_blank">Haxe3中文手册</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">NullStack.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
