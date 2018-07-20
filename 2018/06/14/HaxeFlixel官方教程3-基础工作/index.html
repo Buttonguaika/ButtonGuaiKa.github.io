@@ -41,13 +41,13 @@
 <p>我们将要通过继承<code>FlxSprite</code>类来创建我们自己的<code>Player</code>类。</p>
 <ol>
 <li><p>在资源管理器里，右键点选 source 文件夹然后点击创建文件：</p>
-<p><img src="/2018/06/14/HaxeFlixel官方教程3-基础工作/C:/Users/guaik/Desktop/HaxeFlixel%E5%AE%98%E6%96%B9%E6%95%99%E7%A8%8B3-%E5%9F%BA%E7%A1%80%E5%B7%A5%E4%BD%9C/img1.jpg" alt=""></p>
+<p><img src="/2018/06/14/HaxeFlixel官方教程3-基础工作/img1.jpg" alt=""></p>
 <p>新文件命名为<code>Player.hx</code>然后双击打开。</p>
 </li>
 <li><p>由于 VSCode 环境下目前我还不知道有什么方法可以通过UI界面选择一个文件的父类再自动生成文件，所以下面需要手动敲码。</p>
 </li>
 <li><p>正确添加之后界面大概会像这样：</p>
-<p><img src="/2018/06/14/HaxeFlixel官方教程3-基础工作/C:/Users/guaik/Desktop/HaxeFlixel%E5%AE%98%E6%96%B9%E6%95%99%E7%A8%8B3-%E5%9F%BA%E7%A1%80%E5%B7%A5%E4%BD%9C/img2.jpg" alt=""></p>
+<p><img src="/2018/06/14/HaxeFlixel官方教程3-基础工作/img2.jpg" alt=""></p>
 </li>
 <li><p>然后在<code>Player.hx</code>文件里敲入以下代码：</p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> flixel.FlxSprite;</span><br><span class="line"><span class="keyword">import</span> flixel.system.FlxAssets.FlxGraphicAsset;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Player</span> <span class="keyword"><span class="keyword">extends</span> <span class="type">FlxSprite</span></span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">new</span></span>(?X:<span class="type">Float</span>=<span class="number">0</span>, ?Y:<span class="type">Float</span>=<span class="number">0</span>, ?SimpleGraphic:<span class="type">FlxGraphicAsset</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">super</span>(X,Y,SimpleGraphic);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -77,7 +77,7 @@
 <p>这里所做的事情很简单，为我们的<code>_player</code>变量赋值了一个<code>Player</code>类的实例，告诉他放在<code>(20,20)</code>坐标位置处，并把它添加进<code>PlayState</code>状态里。</p>
 </li>
 <li><p>如果你现在开始调试（可以通过<code>F5</code>打开调试），点击“Play”按钮你应该能看到以下运行结果：</p>
-<p><img src="/2018/06/14/HaxeFlixel官方教程3-基础工作/C:/Users/guaik/Desktop/HaxeFlixel%E5%AE%98%E6%96%B9%E6%95%99%E7%A8%8B3-%E5%9F%BA%E7%A1%80%E5%B7%A5%E4%BD%9C/img3.jpg" alt=""></p>
+<p><img src="/2018/06/14/HaxeFlixel官方教程3-基础工作/img3.jpg" alt=""></p>
 <p>接下来我们来实现移动功能！</p>
 </li>
 </ol>
