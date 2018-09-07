@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>时隔多日再水一篇 | NullStack</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">时隔多日再水一篇</h1><a id="logo" href="/.">NullStack</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">时隔多日再水一篇</h1><div class="post-meta">Sep 5, 2018</div><div class="post-content"><p>这篇博客本该在几日前写完的，开学前应一老友所需码一篇关于HaxeFlixel开发环境搭建的文章，无奈开学这两天没太适应过来拖延到今晚才开始有心情码字，实际发布时间会晚于tag所标示的时间。</p>
+<p>以下是本次要安装的各种工具：</p>
+<ul>
+<li><a href="#first">Haxe工具集</a><ul>
+<li>Lime</li>
+<li>OpenFL</li>
+<li>Flixel</li>
+<li>Flixel Tools</li>
+</ul>
+</li>
+<li><a href="#second">VisualStudio</a></li>
+<li><a href="#third">VisualStudioCode</a></li>
+</ul>
+<p><a name="first"><h2>安装Haxe工具集与其他依赖项</h2></a></p>
+<p>首先，登陆Haxe的官网<a href="https://haxe.org/download/" target="_blank" rel="noopener">haxe.org</a>下载安装包，安装内容包括一个Haxe的跨平台编译器，一个标准库以及一个命令行工具“haxelib”，它是一个包管理工具，可以用于提交和检索可用的库，目前我只用它来安装一些依赖项而已，下面开始安装其他依赖项。</p>
+<p>打开PowerShell或者CMD，依次执行以下指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">haxelib install lime</span><br><span class="line">haxelib install openfl</span><br><span class="line">haxelib install flixel</span><br></pre></td></tr></table></figure>
+<p>注意：如果下载过程报错中断显示超时，那么搭个梯子试试或者在命令中加入参数<code>haxelib -notimeout &lt;command&gt;</code>以取消超时。</p>
+<p>Lime是OpenFL用于跨平台编译的一个底层支持，主要用于给不同平台（如Flash，HTML5，C++）提供输入，音频，渲染上下文，网络访问提供统一的底层支持，具体的技术细节我也还没搞懂，所以就不多说了。</p>
+<p>Flixel原本是由<a href="http://www.adamatomic.com/" target="_blank" rel="noopener">Adam “Atomic” Saltsman</a>以ActionScript3.0写就的一套Flash平台的游戏开发框架，由于后来Flash平台日渐衰落，所以喜爱Flixel的人就开始考虑把它移植到其他平台去，正巧Haxe社区已经有人做了Flash整个API的移植版本——也就是OpenFL，于是Flixel就顺其自然的被移植到了Haxe平台上，这样既能做到原来Flash平台做不到的跨平台开发（Adobe在Flash衰落的日子里主动放弃了很多跨平台的支持），同时又能让原来Flash平台上的开发者通过熟悉的API快速上手，投入Haxe平台的怀抱。</p>
+<p>好了，一点点介绍说完了，当以上东西都下完之后再执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">haxelib run lime setup flixel</span><br></pre></td></tr></table></figure>
+<p>它会检查你的lime和opemfl是否为最新，以及其他Flixel相关的库（主要是插件，DEMO，UI，模板）。</p>
+<p>如果你跑了以上命令，那么Flixel Tools已经被安装了，但是我们需要启动它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">haxelib run flixel-tools setup</span><br></pre></td></tr></table></figure>
+<p>它将会询问你两个问题：</p>
+<p>是否使用命令别名（用于快捷输入，我都是启用的）：y/n</p>
+<p>使用的默认IDE（我们使用VSCode，设置之后通过命令创建模板后将自动通过所选择的编辑器打开）：根据数字选择你要使用的默认编辑环境</p>
+<p>它同样也是一个命令行工具，之后我们新建项目或下载flixel相关的其他库都将通过它来完成。</p>
+<p>到这里先通过几条指令来检查所有东西是不是都安装正确了：</p>
+<p>依次执行以下指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lime</span><br><span class="line">flixel</span><br></pre></td></tr></table></figure>
+<p>如果如下图所示则表明所需要的东西都安装完毕。</p>
+<div align="center"><br><br><img src="/2018/09/05/时隔多日再水一篇/command.jpg" alt=""><br><br></div>
+
+<p><a name="second"><h2>安装VisualStudio</h2></a></p>
+<p>若想将游戏编译至C++平台上HaxeFlixel似乎只能用MSVC编译器，所以需要安装这个庞大的东西，那么上官网 <a href="https://visualstudio.microsoft.com/" target="_blank" rel="noopener">VisualStudo</a> ，目前推荐安装最新的 Community 2017 版。</p>
+<div align="center"><br><br><img src="/2018/09/05/时隔多日再水一篇/VS2017.jpg" alt=""><br><br></div>
+
+<p>下载完打开，然后选中如下图所示的勾选项</p>
+<div align="center"><br><br><img src="/2018/09/05/时隔多日再水一篇/VSInstaller.jpg" alt=""><br><br></div>
+
+<p>但其实我们需要的是VC++的编译器，所以也可以只勾选VC++ 2017 工具</p>
+<div align="center"><br><br><img src="/2018/09/05/时隔多日再水一篇/VSInstaller2.jpg" alt=""><br><br></div>
+
+<p>安装完直接把VS关掉就行。</p>
+<p><a name="third"><h2>安装VisualStudioCode</h2></a></p>
+<p><strong>待更新…</strong></p>
+</div><div class="tags"><a href="/tags/HaxeFlixel/">HaxeFlixel</a></div><div class="post-nav"><a class="next" href="/2018/08/16/摸鱼一把/">摸鱼一把</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://buttonguaika.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/HaxeFlixel/" style="font-size: 15px;">HaxeFlixel</a> <a href="/tags/学习记录/" style="font-size: 15px;">学习记录</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/05/时隔多日再水一篇/">时隔多日再水一篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/16/摸鱼一把/">摸鱼一把</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/05/HaxeFlixel官方教程8-拾取物品/">HaxeFlixel官方教程8:拾取物品</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/02/HaxeFlixel官方教程7-摄像机与缩放/">HaxeFlixel官方教程7:摄像机与缩放</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/02/HaxeFlixel官方教程6-加载Tilemap/">HaxeFlixel官方教程6:加载Tilemap</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/HaxeFlixel官方教程5-创建Tilemap/">HaxeFlixel官方教程5:创建Tilemap</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/30/一点整理/">一点整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/HaxeFlixel官方教程4-精灵序列与动画/">HaxeFlixel官方教程4:精灵序列与动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/HaxeFlixel官方教程3-基础工作/">HaxeFlixel官方教程3:基础工作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/HaxeFlixel官方教程2-创建项目/">HaxeFlixel官方教程2:创建项目</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://haxeflixel.com/" title="HaxeFlixel" target="_blank">HaxeFlixel</a><ul></ul><a href="https://www.kancloud.cn/simon_chang/haxe3manual" title="Haxe3中文手册" target="_blank">Haxe3中文手册</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">NullStack.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
