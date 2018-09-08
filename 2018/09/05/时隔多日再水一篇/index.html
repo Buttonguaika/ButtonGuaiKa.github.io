@@ -25,13 +25,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">haxelib run flixel-tools setup</span><br></pre></td></tr></table></figure>
 <p>它将会询问你两个问题：</p>
 <p>是否使用命令别名（用于快捷输入，我都是启用的）：y/n</p>
-<p>使用的默认IDE（我们使用VSCode，设置之后通过命令创建模板后将自动通过所选择的编辑器打开）：根据数字选择你要使用的默认编辑环境</p>
+<p>使用的默认IDE（我们使用VSCode，设置之后通过命令创建模板后将自动通过所选择的编辑器打开）：这里我们选择VisualStudioCode。</p>
 <p>它同样也是一个命令行工具，之后我们新建项目或下载flixel相关的其他库都将通过它来完成。</p>
 <p>到这里先通过几条指令来检查所有东西是不是都安装正确了：</p>
 <p>依次执行以下指令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lime</span><br><span class="line">flixel</span><br></pre></td></tr></table></figure>
 <p>如果如下图所示则表明所需要的东西都安装完毕。</p>
 <div align="center"><br><br><img src="/2018/09/05/时隔多日再水一篇/command.jpg" alt=""><br><br></div>
+
+
 
 <p><a name="second"><h2>安装VisualStudio</h2></a></p>
 <p>若想将游戏编译至C++平台上HaxeFlixel似乎只能用MSVC编译器，所以需要安装这个庞大的东西，那么上官网 <a href="https://visualstudio.microsoft.com/" target="_blank" rel="noopener">VisualStudo</a> ，目前推荐安装最新的 Community 2017 版。</p>
@@ -45,5 +47,23 @@
 
 <p>安装完直接把VS关掉就行。</p>
 <p><a name="third"><h2>安装VisualStudioCode</h2></a></p>
-<p><strong>待更新…</strong></p>
+<p>我们使用VisualStudioCode（VSCode）作为我们的代码编辑环境，同样登陆<a href="https://visualstudio.microsoft.com/zh-hans/" target="_blank" rel="noopener">VS官网</a>，点击如下图所示下载VSCode：</p>
+<div align="center"><br><br><img src="/2018/09/05/时隔多日再水一篇/VSCode.jpg" alt=""><br><br></div>
+
+<p>安装完成后打开VSCode打开左侧边栏中的扩展：</p>
+<div align="center"><br><br><img src="/2018/09/05/时隔多日再水一篇/VSCodeExtension.jpg" alt=""><br><br></div>
+
+<p>如图所示搜索Haxe，选中Haxe Extension Pack并安装，之后再搜索Lime并安装Lime插件：</p>
+<div align="center"><br><br><img src="/2018/09/05/时隔多日再水一篇/Lime.jpg" alt=""><br><br></div>
+
+<p>完成后重启VSCode。</p>
+<h2>测试项目</h2>
+
+<p>至此万事俱备，我们再次打开PowerShell，输入以下指令新建一个HaxeFlixel项目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flixel tpl &quot;default&quot; -n &quot;HelloWorld&quot;</span><br></pre></td></tr></table></figure>
+<p>这里使用默认模板，并以”HelloWorld”命名在当前目录创建一个新的项目。命令<code>tpl</code>是<code>template</code>的别名，如果在<code>haxelib run flixel-tools setup</code>时启用了别名则可以使用<code>tpl</code>作为缩写快捷输入，default模板在我们执行<code>haxelib run lime setup</code>的时候下载好了，通过它我们可以在使用Flixel命令行工具创建项目时自动生成所需的配置文件，VSCode的配置文件存放于<code>.vscode</code>文件夹下，具体了解看官网文档，同样模板的自定义我自己也没研究过在这里就不讲了，官网资料或者论坛或者StackOverflow或其他什么方式，<strong>自己动手丰衣足食</strong>。</p>
+<div align="center"><br><br><img src="/2018/09/05/时隔多日再水一篇/Complete.jpg" alt=""><br><br></div>
+
+<p>动手检查一下Haxe插件是不是工作正常，主要是看看代码提示和补全，随便在那一行哪一个位置<code>Ctrl+Space</code>可以激活VSCode的IntelliSense，如果出现没有提示的情况，看看界面左下角是不是显示Building Cache，如果是这样的话参考我的上一篇博文。</p>
+<p>到这里应该没什么问题了，如果我什么时候想起来要补充点什么再回来更新，晚安 :)</p>
 </div><div class="tags"><a href="/tags/HaxeFlixel/">HaxeFlixel</a></div><div class="post-nav"><a class="next" href="/2018/08/16/摸鱼一把/">摸鱼一把</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://buttonguaika.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/HaxeFlixel/" style="font-size: 15px;">HaxeFlixel</a> <a href="/tags/学习记录/" style="font-size: 15px;">学习记录</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/05/时隔多日再水一篇/">时隔多日再水一篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/16/摸鱼一把/">摸鱼一把</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/05/HaxeFlixel官方教程8-拾取物品/">HaxeFlixel官方教程8:拾取物品</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/02/HaxeFlixel官方教程7-摄像机与缩放/">HaxeFlixel官方教程7:摄像机与缩放</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/02/HaxeFlixel官方教程6-加载Tilemap/">HaxeFlixel官方教程6:加载Tilemap</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/HaxeFlixel官方教程5-创建Tilemap/">HaxeFlixel官方教程5:创建Tilemap</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/30/一点整理/">一点整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/HaxeFlixel官方教程4-精灵序列与动画/">HaxeFlixel官方教程4:精灵序列与动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/HaxeFlixel官方教程3-基础工作/">HaxeFlixel官方教程3:基础工作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/HaxeFlixel官方教程2-创建项目/">HaxeFlixel官方教程2:创建项目</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://haxeflixel.com/" title="HaxeFlixel" target="_blank">HaxeFlixel</a><ul></ul><a href="https://www.kancloud.cn/simon_chang/haxe3manual" title="Haxe3中文手册" target="_blank">Haxe3中文手册</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">NullStack.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
