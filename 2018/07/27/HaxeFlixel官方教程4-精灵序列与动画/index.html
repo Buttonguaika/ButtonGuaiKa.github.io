@@ -2,7 +2,7 @@
 <p>目前，我们有了一个可以在屏幕中自由走动的 player 了，这很好，但是我们不希望它看起来只是一块蓝色方块，所以让我们为它添加一些图像。</p>
 <p>首先选择一个你希望使用的图像编辑器（我用的是 <a href="https://www.aseprite.org/" target="_blank" rel="noopener">Aseprite</a> 在steam上可以购买）；你可以画任何你想要画的东西，然后把它保存为带透明通道的<code>.png</code>格式。我们的精灵序列将由16x16像素大小每帧组成，角色面朝四个可能的方向上都有两个不同的帧（面朝左和右我们将使用相同的两个帧，因为我们稍后会翻转它们）</p>
 <p>你可以自己画，或者使用我朋友 Vicky Hedgecock 为这个教程创建的图像文件：</p>
-<p><img src="/2018/07/27/HaxeFlixel官方教程4-精灵序列与动画/C:/Users/guaik/Desktop/HaxeFlixel%E5%AE%98%E6%96%B9%E6%95%99%E7%A8%8B4-%E7%B2%BE%E7%81%B5%E5%BA%8F%E5%88%97%E4%B8%8E%E5%8A%A8%E7%94%BB/player.png" alt=""></p>
+<p><img src="/2018/07/27/HaxeFlixel官方教程4-精灵序列与动画/player.png" alt=""></p>
 <p>将你的文件保存至<code>assets/images</code>文件夹下。</p>
 <p>现在我们需要把 player 的图像文件加载进 sprite。所以再一次打开你的<code>Player</code>类。</p>
 <ol>
@@ -25,7 +25,7 @@
 <p> 每当这个函数被调用，它将会检查当前哪一个方向的按键被玩家按下，并基于判断决定 sprite 目前应该是哪个朝向，应该使用哪段动画。</p>
 </li>
 <li><p>保存修改，然后运行项目你将看到你的 player 在运动时有了动画而且动画朝向正确。</p>
-<p><img src="/2018/07/27/HaxeFlixel官方教程4-精灵序列与动画/C:/Users/guaik/Desktop/HaxeFlixel%E5%AE%98%E6%96%B9%E6%95%99%E7%A8%8B4-%E7%B2%BE%E7%81%B5%E5%BA%8F%E5%88%97%E4%B8%8E%E5%8A%A8%E7%94%BB/untitled.png" alt=""></p>
+<p><img src="/2018/07/27/HaxeFlixel官方教程4-精灵序列与动画/untitled.png" alt=""></p>
 </li>
 </ol>
 <p>下一节，我们将对地图与碰撞进行讨论。</p>
